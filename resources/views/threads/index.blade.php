@@ -20,7 +20,10 @@
 
                             <hr>
                         @endforeach
+
+                        <span class="pull-right"> {{ $threads->links() }} </span>
                     </div>
+
                 </div>
             </div>
         </div>

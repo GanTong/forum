@@ -14,7 +14,7 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        $threads = Thread::latest()->get();
+        $threads = Thread::latest()->paginate(6);
 
         return view('threads.index', compact('threads'));
     }
