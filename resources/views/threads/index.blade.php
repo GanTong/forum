@@ -9,7 +9,12 @@
 
                     <div class="panel-body">
                         @foreach($threads as $thread)
-                            <li>{{$thread->title}}</li>
+                            <article>
+                                <h4>{{ $thread->title }}</h4>
+                                <div class="body">{{$thread->body}}</div>
+                            </article>
+
+                            <hr>
                         @endforeach
                     </div>
                 </div>
