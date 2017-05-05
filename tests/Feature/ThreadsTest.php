@@ -19,7 +19,7 @@ class ThreadsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_see_the_thread_title_on_the_browser()
+    public function a_user_can_see_all_threads()
     {
         $thread = factory('App\Thread')->create();
 
@@ -29,7 +29,7 @@ class ThreadsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_see_the_thread_title_when_including_the_thread_id_on_browser()
+    public function a_user_can_see_a_single_thread()
     {
         $thread = factory('App\Thread')->create();
 
