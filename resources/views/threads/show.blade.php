@@ -25,5 +25,13 @@
             </div>
         </div>
 
+        @if (auth()->check())
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    You can see this when you have logged in!
+                </div>
+            </div>
+        @endif
+
     </div>
 @endsection
