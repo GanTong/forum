@@ -16,7 +16,7 @@ class ReadThreadsTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->thread = factory('App\Thread')->create();
+        $this->thread = create('App\Thread');
     }
 
     /** @test */

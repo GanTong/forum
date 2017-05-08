@@ -13,7 +13,7 @@ class ReplyTest extends TestCase
     /** @test */
     public function reply_has_an_owner_associated_to_a_particular_thread()
     {
-        $reply = factory('App\Reply')->create();
+        $reply = create('App\Reply');
 
         $this->assertInstanceOf('App\User', $reply->owner);
 
