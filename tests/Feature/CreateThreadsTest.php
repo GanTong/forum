@@ -20,6 +20,15 @@ class CreateThreadsTest extends TestCase
         $this->post('/threads', $thread->toArray());
 
     }
+    
+    /** @test */
+    public function guests_cannot_see_the_create_thread_page()
+    {
+        $this->withExceptionHandling();
+
+        $response = $this->get('/threads/create');
+        $response->assertRedirect('/login');
+    }
 
     /** @test */
     public function an_authenticated_user_can_create_new_forum_threads()
