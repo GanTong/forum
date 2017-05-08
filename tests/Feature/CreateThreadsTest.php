@@ -28,13 +28,13 @@ class CreateThreadsTest extends TestCase
     public function an_authenticated_user_can_create_new_forum_threads()
     {
         $this->signIn();
-
         $thread = create('App\Thread');
-        $this->post('/threads', $thread->toArray());
 
-        $response = $this->get($thread->path());
-        $response->assertSee($thread->title);
-        $response->assertSee($thread->body);
+        $response = $this->post('/threads', $thread->toArray());
+
+        $this->get($response->headers->get('Location'))
+                ->assertSee($thread->title)
+                ->assertSee($thread->body);
 
     }
     
