@@ -15,7 +15,7 @@ class ParticipateInForumTest extends TestCase
     public function unauthenticated_users_may_not_add_replies()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
-        $this->post('/threads/1/replies', []);
+        $this->post('/threads/some-channel/1/replies', []);
     }
     
     
@@ -25,7 +25,7 @@ class ParticipateInForumTest extends TestCase
          $this->signIn();
 
          $thread = create('App\Thread');
-         $reply = make('App\Reply');
+         $reply = create('App\Reply');
          $this->post($thread->path().'/replies', $reply->toArray());
 
          $response = $this->get($thread->path());
