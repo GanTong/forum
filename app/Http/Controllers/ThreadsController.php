@@ -21,12 +21,11 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($channelSlug = null)
+    public function index(Channel $channel)
     {
-        if($channelSlug)
+        if($channel->exists)
         {
-            $channelId = Channel::where('slug', $channelSlug)->first()->id;
-            $threads = Thread::where('channel_id', $channelId)->latest()->paginate(6);
+            $threads = $channel->threads()->latest()->paginate(6);
         } else {
             $threads = Thread::latest()->paginate(6);
         }
