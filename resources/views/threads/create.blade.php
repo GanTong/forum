@@ -12,6 +12,16 @@
                             {{ csrf_field() }}
 
                             <div class="form-group">
+                                <label for="channel_id">Choose a Channel:</label>
+                                <select name="channel_id" id="channel_id" name="channel_id" class="form-control">
+                                    <option>Choose One...</option>
+                                        @foreach(App\Channel::all() as $channel)
+                                    <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="title">Thread Title:</label>
                                     <input name="title" class="form-control" id="title" value="{{ old('title') }}">
                             </div>
