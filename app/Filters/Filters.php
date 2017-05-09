@@ -31,9 +31,9 @@ abstract class Filters
     {
         $this->builder = $builder;
 
-        foreach ($this->filters as $filter) {
-            if($this->hasFilter($filter)) {
-                $this->$filter($this->request->$filter);
+        foreach ($this->getFilters() as $filter => $value) {
+            if (method_exists($this, $filter)) {
+                $this->$filter($value);
             }
         }
 
@@ -41,11 +41,11 @@ abstract class Filters
     }
 
     /**
-     * @param $filter
-     * @return bool
+     * @return array
      */
-    protected function hasFilter($filter)
+    public function getFilters()
     {
-        return method_exists($this, $filter) && $this->request->has($filter);
+        return $this->request->intersect($this->filters);
     }
+
 }
