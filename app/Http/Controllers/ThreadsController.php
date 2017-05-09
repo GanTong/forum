@@ -25,10 +25,17 @@ class ThreadsController extends Controller
     {
         if($channel->exists)
         {
-            $threads = $channel->threads()->latest()->paginate(6);
+            $threads = $channel->threads()->latest();
         } else {
-            $threads = Thread::latest()->paginate(6);
+            $threads = Thread::latest();
         }
+
+        if($username = request('by')) {
+            $user = \App\User::where('name', $username)->firstOrFail();
+            $threads->where('user_id', $user->id);
+        }
+
+        $threads = $threads->paginate(6);
 
         return view('threads.index', compact('threads'));
     }

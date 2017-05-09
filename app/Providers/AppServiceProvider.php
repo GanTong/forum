@@ -13,13 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+//        Alternative to below, but not suitable when you run tests
+//        \View::share('channels', \App\Channel::all());
 
-        \View::share('channels', \App\Channel::all());
-
-        //Alternative to above
-//        \View::composer('*', function ($view) {
-//            $view->with('channels', \App\Channel::All());
-//        });
+        \View::composer('*', function ($view) {
+            $view->with('channels', \App\Channel::All());
+        });
     }
 
     /**
